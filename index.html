@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+
+    <div class="map">
+        <div class="player" id="player"></div>
+        <div class="player" id="player2"></div>
+        <div class="player" id="player3"></div>
+
+
+        <div class="trigger t1" id="return-to-start-1">
+        </div>
+        <div class="trigger t2" id="do-not-play-car-1">
+        </div>
+        <div class="trigger t3" id="return-to-start-2">
+        </div>
+        <div class="trigger t4" id="do-not-play-car-2">
+        </div>
+        <div class="trigger t5" id="return-three-1">
+        </div>
+        <div class="trigger t6" id="return-four-1">
+        </div>
+        <div class="trigger t7" id="back-to-505-1">
+        </div>
+        <div class="trigger t8" id="fire-pit-1">
+        </div>
+        <div class="trigger t9" id="switch-with-player-1">
+        </div>
+        <div class="trigger t10" id="luck-moment-1">
+        </div>
+        <div class="trigger t11" id="switch-with-player-2">
+
+        </div>
+
+
+        <div class="container" onclick="cubeMove()">
+            <div class="cube" id="cube">
+                <div class="face bottom"> 1 </div>
+                <div class="face top">6</div>
+                <div class="face left">3</div>
+                <div class="face right">4</div>
+                <div class="face front" id="front">5</div>
+                <div class="face back">2</div>
+            </div>
+        </div>
+
+
+        <div class="droped number" id="dropNumber"> 1 </div>
+
+        <br>
+
+        <div class="titles">
+            <br>
+            <h3 id="title"> Welcome to </h3>
+            <h1 id="title"> Mago's path</h1>
+            <br> <br> <br> <br> <br>
+            
+            <p id="gameEvent"></p>
+
+            <br> <br> <br> <br> <br>
+            <p id="participantTurn"> ~ Vez de Fhelipe ! ~</p>
+        </div>
+
+        <script src="trigger.js"></script>
+        <script src="players.js"></script>
+
+        <script>
+
+            var gameEventText = document.getElementById('gameEvent')
+            var turnText = document.getElementById('participantTurn')
+
+            var participants = ["Anne", "Fhelipe", "Raul"]
+
+            var index = 0
+
+            document.getElementById('dropNumber').style.display = 'none';
+
+            function cubeMove() {
+                let cube = document.getElementsByClassName('cube');
+
+                let result = Math.floor(Math.random() * 6);
+                console.log(result);
+
+                document.getElementById('cube').style.display = 'none';
+                document.getElementById('dropNumber').style.display = 'block';
+
+                document.getElementById('dropNumber').innerText = result;
+
+                setTimeout(function () {
+                    document.getElementById('cube').style.display = 'block';
+                    document.getElementById('dropNumber').style.display = 'none';
+                    switchTurn()
+                }, 3000);
+
+
+                return
+
+            }
+
+            function switchTurn() {
+
+                if (index > participants.length - 1) {
+
+                    index = 0
+
+                }
+
+                var curParticipant = participants[index]
+
+                turnText.innerText = `~ Vez de ${curParticipant} ! ~ `
+
+                index++
+
+
+            }
+
+            switchTurn()
+
+            // função teste do gatilho
+            document.addEventListener("mousemove", () => {
+
+                trigger("return-to-start-1", () => {
+                    gameEventText.innerText = ("retorne ao inicio")
+                })                
+
+                trigger("return-to-start-2", () => {
+                    gameEventText.innerText = ("retorne ao inicio")
+                })
+                
+                trigger("do-not-play-car-1", () => {
+                    gameEventText.innerText = ("não jogue por um round")
+                })
+                
+                trigger("do-not-play-car-2", () => {
+                    gameEventText.innerText = ("não jogue por um round")
+                })
+                
+                trigger("return-three-1", () => {
+                    gameEventText.innerText = ("Volte três casas")
+                })
+                
+                trigger("return-four-1", () => {
+                    gameEventText.innerText = ("Volte quatro casas")
+                })
+                
+                trigger("back-to-505-1", () => {
+                    gameEventText.innerText = ("im going back to 505")
+                })
+                
+                trigger("fire-pit-1", () => {
+                    gameEventText.innerText = ("return to the fire pit")
+                })
+                
+                trigger("switch-with-player-1", () => {
+                    gameEventText.innerText = ("troque com o jogador mais distante")
+                })
+                
+                trigger("switch-with-player-2", () => {
+                    gameEventText.innerText = ("troque com o jogador mais distante")
+                })
+                
+                trigger("luck-moment-1", () => {
+                    gameEventText.innerText = ("gire o dado, se cair em 2 vc continua, se não volte três casas")
+                })
+
+
+
+            })
+
+
+        </script>
+
+</body>
+
+</html>

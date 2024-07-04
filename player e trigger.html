@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="player" id="player"></div>
+    <div class="player" id="player2"></div>
+    <div class="player" id="player3"></div>
+
+
+    <div class="trigger" id="return-to-start">
+    </div>
+
+</body>
+
+</html>
+
+<style>
+    .trigger {
+
+        position: absolute;
+
+        height: 50px;
+        width: 100px;
+
+        z-index: 0;
+
+        background-color: white;
+
+    }
+
+    #player {
+
+        background-image: url(https://preview.redd.it/anyone-know-any-info-on-the-ragecat-rage-is-consuming-cat-v0-6ef5wzp6vkpb1.jpg?width=640&crop=smart&auto=webp&s=8b34ac1bfd8f2b190e2ac71aa7648b151ba3b725);
+        background-size: cover;
+
+    }
+
+    #player2 {
+
+        background-image: url(https://static.wikia.nocookie.net/afterlifecryptids/images/e/e2/Image_2022-02-02_092519.png/revision/latest?cb=20220202152538);
+        background-size: cover;
+
+    }
+
+    #player3 {
+
+        background-image: url(https://i.redd.it/frd7n7f6hv061.jpg);
+        background-size: cover;
+
+    }
+
+    .player {
+        position: relative;
+        width: 100px;
+        height: 100px;
+
+        background-color: red;
+
+        position: absolute;
+
+        opacity: 1;
+
+        z-index: 1;
+    }
+
+
+    body {
+
+        margin: 0;
+        padding: 0;
+
+        background-color: black;
+
+    }
+
+    .dot {
+
+        border-radius: 50%;
+
+        border: 2px solid white;
+
+        height: 50px;
+        width: 50px;
+
+        transform: translateX(-50%) translateY(-50%);
+
+    }
+</style>
+
+<script>
+
+    var players = document.querySelectorAll(".player")
+
+    var mousedown = false
+    
+    var triggerQnt = 0;
+    
+    players.forEach(ball => {
+        var isDragging = false;
+        var offsetX, offsetY;
+
+        ball.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            mousedown = true;
+            offsetX = e.clientX - ball.getBoundingClientRect().left;
+            offsetY = e.clientY - ball.getBoundingClientRect().top;
+            ball.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                ball.style.left = `${e.clientX - offsetX}px`;
+                ball.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            mousedown = false;
+            ball.style.cursor = 'grab';
+        });
+    });
+
+    function trigger(targetname, func) {
+
+        var trig = document.getElementById(targetname)
+
+        e = window.event
+
+        posX = e.clientX
+        posY = e.clientY
+
+        // console.log(posX, posY)
+
+        var rect = trig.getBoundingClientRect()
+
+        // console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+        if (posX >= rect.left && posX < rect.right && posY >= rect.top && posY < rect.bottom) {
+
+            if (mousedown == false) {
+                return
+            }
+
+            func()
+
+        }
+    }
+
+    document.addEventListener("mousemove", () => {
+
+        trigger("trigger-test", () => {
+            window.alert("hello world")
+        })
+
+    })
+
+    // players.forEach(player => {
+
+    //     player.addEventListener("mousedown", (player) => {
+
+    //         mousedown = true
+
+    //         mouseefctTrack(event, player)
+
+    //     })
+
+    //     player.addEventListener("mousemove", (player) => {
+
+    //         var dot = player
+
+    //         if (mousedown == true) {
+
+    //             e = window.event
+
+    //             posX = e.clientX
+    //             posY = e.clientY
+
+    //             dot.style.marginLeft = posX + "px"
+    //             dot.style.marginTop = posY + "px"
+
+    //         }
+
+    //     })
+
+    //     player.addEventListener("mouseup", (player) => {
+
+    //         mousedown = false
+
+    //         var dot = player
+
+    //         posX = e.clientX
+    //         posY = e.clientY
+
+    //         dot.style.marginLeft = posX + "px"
+    //         dot.style.marginTop = posY + "px"
+
+    //     })
+
+    // });
+
+</script>

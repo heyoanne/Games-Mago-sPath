@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Arsenal SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+body {
+    background: rgb(13, 17, 28);
+    background: linear-gradient(0deg, rgba(13, 17, 28, 1) 0%, rgb(23, 28, 39) 44%, rgb(6, 8, 13) 100%);
+    overflow: hidden;
+    display: flex;
+    /* justify-content: center; */
+}
+
+.titles {
+    position: absolute;
+    color: white;
+
+    text-align: center;
+
+    margin-left: 1400px;
+    margin-top: 60px;
+}
+
+.titles h1 {
+    font-size: 70px;
+
+}
+
+.titles h3,
+p {
+    font-size: 30px;
+}
+
+.titles p {
+    font-size: 50px;
+    color: rgb(176, 176, 19);
+}
+
+.gameEvent {
+
+    width: 100px;
+
+}
+
+.map {
+
+    width: 1080px;
+    height: 1080px;
+    background-image: url('mapajogo.png');
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* Cube configs */
+
+.container {
+
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+
+    display: flex;
+
+    position: absolute;
+
+    margin-top: 600px;
+    margin-left: 1500px;
+
+
+}
+
+.cube {
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotate3d(1, 1, 0, 45deg);
+    height: 400px;
+    width: 400px;
+    animation: rotateAnimation 5s linear infinite;
+
+    /* border: solid black; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+
+@keyframes rotateAnimation {
+    /* from {
+        transform: rotateY(0deg) rotateZ(50deg);
+    }
+
+    to {
+        transform: rotateY(360deg) rotateZ(50deg);
+    } */
+
+    /* from {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg) rotateX(360deg);
+    } */
+
+    /* from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    } */
+    from {
+        transform: rotateX(-20deg) rotateY(30deg);
+    }
+
+    to {
+        transform: rotateX(-20deg) rotateY(390deg);
+    }
+
+
+}
+
+.face {
+    width: 200px;
+    height: 200px;
+    background-color: #093554;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+    background-blend-mode: color-burn;
+    border: 1px solid #071920;
+    border-radius: 15px;
+
+    position: absolute;
+
+    opacity: 1;
+
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Temp */
+    margin: 2px;
+
+}
+
+.droped {
+    width: 250px;
+    height: 250px;
+    background-color: #093554;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+    background-blend-mode: color-burn;
+    border: 1px solid #071920;
+    border-radius: 15px;
+
+    position: absolute;
+
+    opacity: 1;
+
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+
+    /* Temp */
+    margin: 2px;
+
+    margin-left: 1470px;
+    margin-top: 640px;
+}
+
+
+.front {
+    transform: translateZ(100px);
+
+}
+
+.back {
+    transform: translateZ(-100px) rotateY(180deg);
+}
+
+.left {
+    transform: translateX(-100px) rotateY(-90deg);
+}
+
+.right {
+    transform: translateX(100px) rotateY(90deg);
+}
+
+.top {
+    transform: translateY(-100px) rotateX(90deg);
+}
+
+.bottom {
+    transform: translateY(100px) rotateX(-90deg);
+}
+
+/* PLAYER CODE */
+
+#player {
+
+    background-image: url(assets/players/cat.png);
+    background-size: cover;
+
+}
+
+#player2 {
+
+    background-image: url(assets/players/drag.png);
+    background-size: cover;
+
+}
+
+#player3 {
+
+    background-image: url(assets/players/king.png);
+    background-size: cover;
+
+}
+
+.player {
+    position: relative;
+    width: 50px;
+    height: 50px;
+
+    background-color: transparent;
+
+    position: absolute;
+
+    opacity: 1;
+
+    z-index: 1;
+}
+
+/* trigger style */
+.trigger {
+
+    position: absolute;
+
+    border: 2px solid black;
+
+    height: 50px;
+    width: 50px;
+
+    z-index: 0;
+
+    background-color: white;
+
+    opacity: 0;
+
+}
+
+/* trigger pos */
+
+.t1 {
+
+    position: absolute;
+
+    top: 935px;
+    left: 90px;
+
+}
+
+.t2 {
+
+    position: absolute;
+
+    top: 980px;
+    left: 390px;
+
+}
+
+.t3 {
+
+    position: absolute;
+
+    top: 960px;
+    left: 930px;
+
+}
+
+.t4 {
+
+    position: absolute;
+
+    top: 760px;
+    left: 650px;
+
+}
+
+.t5 {
+
+    position: absolute;
+
+    top: 620px;
+    left: 860px;
+
+}
+
+.t6 {
+
+    position: absolute;
+
+    top: 450px;
+    left: 970px;
+
+}
+
+.t7 {
+
+    position: absolute;
+
+    top: 360px;
+    left: 800px;
+
+}
+
+.t8 {
+
+    position: absolute;
+
+    top: 180px;
+    left: 650px;
+
+}
+
+.t9 {
+
+    position: absolute;
+
+    top: 410px;
+    left: 420px;
+
+}
+
+.t10 {
+
+    position: absolute;
+
+    top: 450px;
+    left: 60px;
+
+}
+
+.t11 {
+
+    position: absolute;
+
+    top: 610px;
+    left: 300px;
+
+}
